@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-const messages = ["learn React 🌟", "Apply for jobs", "Invest your new income"];
-
+const messages = ["learn React", "Apply for jobs", "Invest your new income"];
 const App = () => {
-  return <Steps />;
-};
-
-function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   const nextClickHandler = () => {
@@ -34,43 +29,27 @@ function Steps() {
             <div className={`${step >= 2 ? "active" : ""}`}>2</div>
             <div className={`${step >= 3 ? "active" : ""}`}>3</div>
           </div>
-          <Message step={step}>{messages[step - 1]}</Message>
+          <p className="message">
+            Step {step} {messages[step - 1]}
+          </p>
           <div className="buttons">
-            <Button
-              bgColor="#7950f2"
-              textColor="#fff"
+            <button
               onClick={previousClickHandler}
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
             >
-              👈 Previous
-            </Button>
-            <Button
-              bgColor="#7950f2"
-              textColor="#fff"
+              Previous
+            </button>
+            <button
               onClick={nextClickHandler}
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
             >
-              Next 👉
-            </Button>
+              Next
+            </button>
           </div>
         </div>
       )}
     </>
   );
-}
-function Button({ bgColor, textColor, onClick, children }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{ backgroundColor: bgColor, color: textColor }}
-    >
-      {children}
-    </button>
-  );
-}
-function Message({ step, children }) {
-  return (
-    <p className="message">
-      Step {step} {children}
-    </p>
-  );
-}
+};
+
 export default App;
